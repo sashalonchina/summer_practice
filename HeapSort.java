@@ -59,9 +59,7 @@ class HeapSort
      */
     private static void heapify(String[] a, int i, String type)
     {
-        int l = left(i);
-        int r = right(i);
-        int largest = i;
+        int l = left(i), r = right(i), largest = i;
 
         if (type == "up")
         {

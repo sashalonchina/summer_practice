@@ -5,6 +5,11 @@ import java.util.Random;
 
 public class Test
 {
+    /** Константы для задания:
+     *  Максимальная длина массива случайных чисел - maxLenArr
+     *  Максимальная длина случайной строки - maxLenStr */
+    static int maxLenArr = 50, maxLenStr = 20;
+
     /** Метод для записи тестового массива в файл */
     public static void write(String name, String[] a)
     {
@@ -41,66 +46,92 @@ public class Test
 
     }
 
+    /** Метод для генерации массивов разных данных */
     public static void createArray()
     {
-        String[] types = {"string", "integer", "doub", "byt", "bool", "shrt", "chr", "lng", "flt"};
+        /** Массив с типами данных, по которым будет проходить генерация */
+        String[] types = {"strng", "intgr", "dbl", "bt", "bln", "shrt", "chr", "lng", "flt"};
 
+        /** Инициализация:
+         *  Объекта класса Random - rand
+         *  Генерация длины массива - lengh
+         *  Генерация инекса массива типа данных - indType
+         *  Массива случайных данных - res*/
         final Random rand = new Random();
 
-        int lengh = rand.nextInt(200);
+        int lengh = rand.nextInt(maxLenArr), indType = rand.nextInt(types.length);
 
-        int indtype = rand.nextInt(9);
+        String[] res = new String[lengh];
 
-        switch (indtype)
+        /** Выбор типа для генерации на основе датчика случайных чисел */
+        switch (types[indType])
         {
-            case 0:
+
+            /** Генерация массива случайных данных типа String */
+            case "strng":
             {
-                String[] res = new String[lengh];
+                int strlen = rand.nextInt(maxLenStr);
+
+                for (int i = 0; i < lengh; i++)
+                {
+                    for (int j = 0; j < strlen; j++) res[i] = "" + (char) (rand.nextInt(26) + 'a');
+                }
             }
 
-            case 1:
+            /** Генерация массива случайных данных типа int */
+            case "intgr":
             {
-                String[] res = new String[lengh];
-
-                for (int i = 0; i < lengh; i++) res[i] = "" + rand.nextInt(400);
-
-                write("in.txt", res);
+                for (int i = 0; i < lengh; i++) res[i] = "" + rand.nextInt();
             }
 
-            case 2:
+            /** Генерация массива случайных данных типа double */
+            case "dbl":
             {
-                double[] res = new double[lengh];
+                for (int i = 0; i < lengh; i++) res[i] = "" + rand.nextDouble();
             }
 
-            case 3:
+            /** Генерация массива случайных данных типа byte */
+            case "bt":
             {
-                byte[] res = new byte[lengh];
+                byte[] tmp = new byte[lengh];
+
+                rand.nextBytes(tmp);
+
+                for (int i = 0; i < lengh; i++) res[i] = "" + tmp[i];
             }
 
-            case 4:
+            /** Генерация массива случайных данных типа boolean */
+            case "bln":
             {
-                boolean[] res = new boolean[lengh];
+                for (int i = 0; i < lengh; i++) res[i] = "" + rand.nextBoolean();
             }
 
-            case 5:
+            /** Генерация массива случайных данных типа short */
+            case "shrt":
             {
-                short[] res = new short[lengh];
+                for (int i = 0; i < lengh; i++) res[i] = "" + (int) Math.floor(Math.random() * 65536 - 32768);
             }
 
-            case 6:
+            /** Генерация массива случайных данных типа char */
+            case "chr":
             {
-                char[] res = new char[lengh];
+                for (int i = 0; i < lengh; i++) res[i] = "" + (char) (rand.nextInt(26) + 'a');
             }
 
-            case 7:
+            /** Генерация массива случайных данных типа long */
+            case "lng":
             {
-                long[] res = new long[lengh];
+                for (int i = 0; i < lengh; i++) res[i] = "" + rand.nextLong();
             }
 
-            case 8:
+            /** Генерация массива случайных данных типа float */
+            case "flt":
             {
-                float[] res = new float[lengh];
+                for (int i = 0; i < lengh; i++) res[i] = "" + rand.nextFloat();
             }
         }
+
+        /** Запись массива случайных данных в файл */
+        write("in.txt", res);
     }
 }
