@@ -5,8 +5,13 @@ import java.util.Random;
 
 public class Test
 {
+    /** Константы для задания:
+     *  Максимальная длина массива случайных чисел - maxLenArr
+     */
+    private static int maxCount = 50;
+
     /** Метод для записи тестового массива в файл */
-    public static void write(String name, String[] a)
+    public static void write(String name, int[] a)
     {
         /** Создаем объект файла */
         File file = new File(name);
@@ -17,13 +22,7 @@ public class Test
             if (!file.exists()) file.createNewFile();
 
             /** Объект для записи в файл */
-            PrintWriter out = new PrintWriter(file.getAbsoluteFile());
-
-            try
-            {
-                /** Записываем массив в файл */
-                out.print(a);
-            }
+            
 
             finally
             {
@@ -41,66 +40,22 @@ public class Test
 
     }
 
-    public static void createArray()
+    /** Метод для генерации массивов разных данных */
+    public Test(int maxLenArr)
     {
-        String[] types = {"string", "integer", "doub", "byt", "bool", "shrt", "chr", "lng", "flt"};
-
+        /** Инициализация:
+         *  Объекта класса Random - rand
+         *  Генерация длины массива - lengh
+         *  Генерация инекса массива типа данных - indType
+         *  Массива случайных чисел - res*/
         final Random rand = new Random();
 
-        int lengh = rand.nextInt(200);
+        int[] res = new int[maxLenArr];
 
-        int indtype = rand.nextInt(9);
+        /** Генерация массива случайных данных типа int */
+        for (int i = 0; i < maxLenArr; i++) res[i] = rand.nextInt(maxCount);
 
-        switch (indtype)
-        {
-            case 0:
-            {
-                String[] res = new String[lengh];
-            }
-
-            case 1:
-            {
-                String[] res = new String[lengh];
-
-                for (int i = 0; i < lengh; i++) res[i] = "" + rand.nextInt(400);
-
-                write("in.txt", res);
-            }
-
-            case 2:
-            {
-                double[] res = new double[lengh];
-            }
-
-            case 3:
-            {
-                byte[] res = new byte[lengh];
-            }
-
-            case 4:
-            {
-                boolean[] res = new boolean[lengh];
-            }
-
-            case 5:
-            {
-                short[] res = new short[lengh];
-            }
-
-            case 6:
-            {
-                char[] res = new char[lengh];
-            }
-
-            case 7:
-            {
-                long[] res = new long[lengh];
-            }
-
-            case 8:
-            {
-                float[] res = new float[lengh];
-            }
-        }
+        /** Запись массива случайных данных в файл */
+        write("in.txt", res);
     }
 }

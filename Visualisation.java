@@ -1,13 +1,82 @@
 package sample.summer_practice;
 
-/**
- * Класс для сортировки массива целых чисел с помощью кучи.
- * Для сортировки вызывается статический метод sort(int[] a)
- */
-class HeapSort
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+/** Класс графического интерфейса */
+public class Visualisation extends JPanel
 {
-    /** Размер кучи. Изначально равен размеру сортируемого массива */
+    private int[] array;
+
     private static int heapSize;
+
+    private JButton pause = new JButton("Пауза");
+
+    private int scale = 2;
+    private int minRad = 10;
+
+    private Graphics2D g2d;
+
+    public Visualisation(int[] arr, int sp)
+    {
+        array = arr;
+
+        buildHeap(array);
+
+        Timer timer = new Timer(sp, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (heapSize == 1) return;
+
+                swap(array, 0, heapSize - 1);
+
+                heapSize--;
+
+                heapify(array, 0);
+
+                rep();
+                repaint();
+            }
+        });
+
+        timer.start();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+
+        g2d = (Graphics2D)g;
+
+        g2d.setBackground(Color.white);
+
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        for(int i = 0; i < array.length; i++)
+        {
+            g2d.setColor(Color.red);
+            g2d.fillOval(i * getWidth()/array.length + minRad, getHeight()/2 - array[i]/scale + minRad, array[i]/scale + minRad, array[i]/scale + minRad);
+        }
+
+        g2d.dispose();
+    }
+
+    public void rep()
+    {
+        for(int i = 0; i < array.length; i++)
+        {
+            g2d.setColor(Color.red);
+            g2d.fillOval(i * getWidth()/array.length + minRad, getHeight()/2 - array[i]/scale + minRad, array[i]/scale + minRad, array[i]/scale
+                        + minRad);
+        }
+    }
+
+
 
     /**
      * Сортировка с помощью кучи
@@ -22,19 +91,7 @@ class HeapSort
      *
      * a - сортируемый массив
      */
-    public static void sort(int[] a)
-    {
-        buildHeap(a);
 
-        while (heapSize > 1)
-        {
-            swap(a, 0, heapSize - 1);
-
-            heapSize--;
-
-            heapify(a, 0);
-        }
-    }
 
     /**
      * Построение кучи. Поскольку элементы с номерами начиная с a.length / 2 + 1 -
@@ -106,5 +163,4 @@ class HeapSort
         a[i] = a[j];
         a[j] = temp;
     }
-
 }

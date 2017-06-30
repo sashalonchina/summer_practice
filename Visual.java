@@ -1,13 +1,86 @@
 package sample.summer_practice;
 
-/**
- * Класс для сортировки массива целых чисел с помощью кучи.
- * Для сортировки вызывается статический метод sort(int[] a)
- */
-class HeapSort
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+/** Класс графического интерфейса */
+public class Visual extends JPanel
 {
-    /** Размер кучи. Изначально равен размеру сортируемого массива */
-    private static int heapSize;
+    private int heapSize;
+
+    private Graphics2D g2d;
+
+    private int[] array;
+
+    private static int w;
+
+    public Visual(int[] arr, int spd)
+    {
+        array = arr;
+
+        buildHeap(array);
+
+        Timer timer = new Timer(spd, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (heapSize == 1) return;
+
+                swap(array, 0, heapSize - 1);
+
+                heapSize--;
+
+                heapify(array, 0);
+
+                repaint();
+            }
+        });
+
+        timer.start();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        g2d = (Graphics2D)g;
+
+        w = getWidth();
+
+        g2d.setBackground(Color.white);
+
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2d.setColor(Color.black);
+
+        g2d.drawLine(w/2, 40, w/2 - 120, 120);
+        g2d.drawLine(w/2, 40, w/2 + 120, 120);
+        g2d.drawLine(w/2 - 120, 120, w/2 - 180, 200);
+        g2d.drawLine(w/2 - 120, 120, w/2 - 60, 200);
+        g2d.drawLine(w/2 + 120, 120, w/2 + 180, 200);
+        g2d.drawLine(w/2 + 120, 120, w/2 + 60, 200);
+        g2d.drawLine(w/2 - 180, 200, w/2 - 220, 280);
+        g2d.drawLine(w/2 - 180, 200, w/2 - 150, 280);
+        g2d.drawLine(w/2 - 60, 200, w/2 - 60, 280);
+
+        g2d.setColor(Color.blue);
+
+        g2d.fillOval(w/2 - 10, 30, 20, 20);
+        g2d.fillOval(w/2 - 130, 110, 20, 20);
+        g2d.fillOval(w/2 + 110, 110, 20, 20);
+        g2d.fillOval(w/2 - 190, 190, 20, 20);
+        g2d.fillOval(w/2 - 70, 190, 20, 20);
+        g2d.fillOval(w/2 + 170, 190, 20, 20);
+        g2d.fillOval(w/2 + 50, 190, 20, 20);
+        g2d.fillOval(w/2 - 70, 270, 20, 20);
+        g2d.fillOval(w/2 - 230, 270, 20, 20);
+        g2d.fillOval(w/2 - 160, 270, 20, 20);
+
+        g2d.dispose();
+    }
 
     /**
      * Сортировка с помощью кучи
@@ -22,19 +95,6 @@ class HeapSort
      *
      * a - сортируемый массив
      */
-    public static void sort(int[] a)
-    {
-        buildHeap(a);
-
-        while (heapSize > 1)
-        {
-            swap(a, 0, heapSize - 1);
-
-            heapSize--;
-
-            heapify(a, 0);
-        }
-    }
 
     /**
      * Построение кучи. Поскольку элементы с номерами начиная с a.length / 2 + 1 -
@@ -43,7 +103,7 @@ class HeapSort
      *
      *  a - массив, из которого формируется куча
      */
-    private static void buildHeap(int[] a)
+    private void buildHeap(int[] a)
     {
         heapSize = a.length;
 
@@ -57,15 +117,24 @@ class HeapSort
      * a - массив, из которого сформирована куча
      * i - корень поддерева, для которого происходит переупорядосивание
      */
-    private static void heapify(int[] a, int i)
+    private void heapify(int[] a, int i)
     {
-        int l = left(i), r = right(i), largest = i;
+        int l = left(i), r = right(i), largest = i, y = 30, x = w/2 - 10, sc = 1;
 
         if ((l < heapSize) && (a[i] < a[l])) largest = l;
         if ((r < heapSize) && (a[largest] < a[r])) largest = r;
 
+        g2d.setColor(Color.white);
+
+        g2d.drawString("" + a[largest], x, y);
+
         if (i != largest)
         {
+            y += 80;
+            x += 120/sc;
+
+            sc++;
+
             swap(a, i, largest);
 
             heapify(a, largest);
@@ -78,7 +147,7 @@ class HeapSort
      * i - индекс текущего узла кучи
      * return - индекс правого потомка
      */
-    private static int right(int i) {
+    private int right(int i) {
         return 2 * i + 1;
     }
 
@@ -88,7 +157,7 @@ class HeapSort
      * i - индекс текущего узла кучи
      * return - индекс левого потомка
      */
-    private static int left(int i) {
+    private int left(int i) {
         return 2 * i + 2;
     }
 
@@ -99,12 +168,11 @@ class HeapSort
      * i - индекс первого элемента
      * j - индекс второго элемента
      */
-    private static void swap(int[] a, int i, int j)
+    private void swap(int[] a, int i, int j)
     {
         int temp = a[i];
 
         a[i] = a[j];
         a[j] = temp;
     }
-
 }
