@@ -97,7 +97,6 @@ public class GUI extends JFrame
 
             /** Показать элементы */
             label.setVisible(true);
-            button1.setVisible(true);
             button2.setVisible(true);
 
             /** Спрятать элементы */
@@ -106,9 +105,11 @@ public class GUI extends JFrame
             next.setVisible(false);
 
             /** Переопределение текста */
-            label.setText("Выберите тип визуализации");
-            button1.setText("Куча");
-            button2.setText("Размер");
+            label.setText("Запустить визуализацию");
+            button2.setText("Запустить");
+
+            /** Положение кнопки */
+            button2.setLocation(130 * scale, 70 * scale);
 
             /** Задание поведения кнопок */
             button2.addActionListener(new Action4());
