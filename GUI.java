@@ -1,7 +1,6 @@
 package sample.summer_practice;
 
 import java.awt.*;
-<<<<<<< HEAD
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,50 +10,19 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import sample.summer_practice.Visual;
-=======
-<<<<<<< HEAD
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import sample.summer_practice.Visual;
-=======
-import java.awt.event.*;
-import javax.swing.*;
-import sample.summer_practice.GUI1;
->>>>>>> origin/master
->>>>>>> origin/master
 
 /** Класс графического интерфейса */
 public class GUI extends JFrame
 {
-<<<<<<< HEAD
+
     /**
-     * Задать длину h и ширину w окна, две кнопки button1, button2 и текст label
-     */
-=======
-<<<<<<< HEAD
-    /**
-     * Задать длину h и ширину w окна, две кнопки button1, button2 и текст label
+     * Задать длину h и ширину w окна, константы, кнопки button1, button2, nexter, next, pause и текст label, outp и
+     * текстовое поле text, speed, ps
      */
     private static int scale = 2;
     private static int maxCount = 50;
 
     private int w = 360 * scale, h = 270 * scale;
-    private int spd = 0;
-    private int pse = 0;
-    private int maxLenArr = 10;
-=======
-    /** Задать длину h и ширину w окна, две кнопки button1, button2 и текст label */
->>>>>>> origin/master
-    private static int scale = 2;
-    private static int maxCount = 50;
-
-    private int w = 360 * scale, h = 270 * scale;
-<<<<<<< HEAD
     private int spd = 0;
     private int pse = 0;
     private int maxLenArr = 10;
@@ -63,38 +31,18 @@ public class GUI extends JFrame
     private ArrayList<HeapSort> hs;
 
     private Visualisation scene;
-=======
->>>>>>> origin/master
->>>>>>> origin/master
 
     private boolean flag = false;
 
     private String tmp;
-<<<<<<< HEAD
+
     private int[] array = new int[maxLenArr];
-=======
-<<<<<<< HEAD
-    private int[] array = new int[maxLenArr];
-
-
-
-    /**
-     * Конструктор класса
-     */
-=======
-    private String[] array;
-
-    private ImageIcon img = new ImageIcon("Images/tree.jpg");
-    private ImageIcon image = new ImageIcon("Images/circles.jpg");
->>>>>>> origin/master
 
     private JButton button1 = new JButton("Сгенерировать");
     private JButton button2 = new JButton("Ввести вручную");
     private JButton nexter = new JButton(">>");
     private JButton next = new JButton(">>");
-<<<<<<< HEAD
     private JButton pause = new JButton("Следующий шаг");
-    private JButton play = new JButton("Продолжить");
 
     private JLabel label = new JLabel("Как задать массив?");
     private JLabel outp = new JLabel("Начало визуализации");
@@ -103,22 +51,7 @@ public class GUI extends JFrame
     private JTextField speed = new JTextField("Введите задержку визуализации");
     private JTextField ps = new JTextField("Введите длину паузы");
 
-    /**
-     * Конструктор класса
-     */
-=======
-    private JButton pause = new JButton("Пауза");
-
-    private JLabel label = new JLabel("Как задать массив?");
-    private JLabel tree = new JLabel(img);
-    private JLabel circle = new JLabel(image);
-
-    private JTextField text = new JTextField("Введите массив");
-    private JTextField speed = new JTextField("Введите скорость визуализации");
-
     /** Конструктор класса */
->>>>>>> origin/master
->>>>>>> origin/master
     public GUI()
     {
         super();
@@ -135,27 +68,11 @@ public class GUI extends JFrame
 
         /** Размеры и положение кнопок */
         button1.setSize(100 * scale, 20 * scale);
-<<<<<<< HEAD
         button1.setLocation(70 * scale, 70 * scale);
         button1.addActionListener(new Action2());
 
         button2.setSize(100 * scale, 20 * scale);
         button2.setLocation(210 * scale, 70 * scale);
-=======
-<<<<<<< HEAD
-        button1.setLocation(70 * scale, 70 * scale);
-        button1.addActionListener(new Action2());
-
-        button2.setSize(100 * scale, 20 * scale);
-        button2.setLocation(210 * scale, 70 * scale);
-=======
-        button1.setLocation(70 * scale,70 * scale);
-        /** button1.addActionListener(new Action2()); */
-
-        button2.setSize(100 * scale, 20 * scale);
-        button2.setLocation(210 * scale,70 * scale);
->>>>>>> origin/master
->>>>>>> origin/master
         button2.addActionListener(new Action1());
 
         /** Размеры и положение текста */
@@ -169,61 +86,32 @@ public class GUI extends JFrame
         container.add(button2);
     }
 
-<<<<<<< HEAD
-    /**
-     * Поведения кнопки генерации массива
-     */
-=======
-<<<<<<< HEAD
-    /**
-     * Поведения кнопки генерации массива
-     */
-=======
-    /** Поведения кнопки генерации массива */
->>>>>>> origin/master
->>>>>>> origin/master
+    /** Поведение кнопки далее после ввода скорости и паузы, здесь отрисовывается окно выбора визуализации */
     class Action implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
-<<<<<<< HEAD
+            /** Чтение с текстового поля */
             spd = Integer.parseInt(speed.getText());
             pse = Integer.parseInt(ps.getText());
 
-=======
-<<<<<<< HEAD
-            spd = Integer.parseInt(speed.getText());
-            pse = Integer.parseInt(ps.getText());
-
-=======
->>>>>>> origin/master
->>>>>>> origin/master
+            /** Показать элементы */
             label.setVisible(true);
             button1.setVisible(true);
             button2.setVisible(true);
 
+            /** Спрятать элементы */
             speed.setVisible(false);
-<<<<<<< HEAD
             ps.setVisible(false);
-=======
-<<<<<<< HEAD
-            ps.setVisible(false);
-=======
->>>>>>> origin/master
->>>>>>> origin/master
             next.setVisible(false);
 
+            /** Переопределение текста */
             label.setText("Выберите тип визуализации");
-
             button1.setText("Куча");
-            button1.addActionListener(new Action3());
-
             button2.setText("Размер");
+
+            /** Задание поведения кнопок */
             button2.addActionListener(new Action4());
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
         }
     }
 
@@ -236,47 +124,28 @@ public class GUI extends JFrame
         {
             flag = true;
 
+            /** Задание размеров и положение объектов */
             text.setSize(120 * scale, 25 * scale);
             text.setLocation(210 * scale, 150 * scale);
-<<<<<<< HEAD
-=======
-=======
-
-            tree.setSize(150 * scale, 110 * scale);
-            tree.setLocation(45 * scale, 95 * scale);
-
-            circle.setSize(150 * scale, 110 * scale);
-            circle.setLocation(185 * scale, 95 * scale);
-        }
-    }
-
-    /** Поведение кнопки ручного ввода массива */
-    class Action1 implements ActionListener
-    {
-        public void  actionPerformed(ActionEvent e)
-        {
-            text.setSize(120 * scale, 25 * scale);
-            text.setLocation(210 * scale,150 * scale);
->>>>>>> origin/master
->>>>>>> origin/master
 
             nexter.setSize(30 * scale, 15 * scale);
             nexter.setLocation(300 * scale, 210 * scale);
+
+            /** Привязка поведения кнопки далее */
             nexter.addActionListener(new Action2());
 
+            /** Добавление элементов на окно */
             add(text);
             add(nexter);
         }
     }
 
+    /** Задание поведения кнопки далее после ручного ввода, отрисовывается окно выбора скорости паузы и визуализации, ренерируется массив */
     class Action2 implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
+            /** Генерация массива */
             if (flag == true)
             {
                 tmp = text.getText();
@@ -294,7 +163,6 @@ public class GUI extends JFrame
                 }
 
                 for (int i = 0; i < arr.length; i++) array[i] = Integer.parseInt(arr[i]);
-<<<<<<< HEAD
 
                 hs = new ArrayList();
                 HeapSort ini = new HeapSort(array);
@@ -311,8 +179,6 @@ public class GUI extends JFrame
 
                     curr = new HeapSort(curr.stp);
                 }
-=======
->>>>>>> origin/master
             }
             else
             {
@@ -334,7 +200,6 @@ public class GUI extends JFrame
                 {
                     System.out.println("Sorry, InputMismatchException");
                 }
-<<<<<<< HEAD
 
                 hs = new ArrayList();
                 HeapSort ini = new HeapSort(array);
@@ -353,12 +218,14 @@ public class GUI extends JFrame
                 }
             }
 
+            /** Спрятать элементы */
             label.setVisible(false);
             button1.setVisible(false);
             button2.setVisible(false);
             text.setVisible(false);
             nexter.setVisible(false);
 
+            /** Задать размеры и положения */
             speed.setSize(120 * scale, 25 * scale);
             speed.setLocation(120 * scale, 70 * scale);
 
@@ -367,206 +234,62 @@ public class GUI extends JFrame
 
             next.setSize(30 * scale, 15 * scale);
             next.setLocation(165 * scale, 130 * scale);
+
+            /** Привязка поведения к кнопке далее */
             next.addActionListener(new Action());
 
+            /** Добавление элементов на окно */
             add(speed);
             add(ps);
             add(next);
         }
     }
 
-    class Action3 implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            Visual scene = new Visual(array, spd);
-
-            JPanel cp = new JPanel(new BorderLayout());
-
-            cp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),
-                    BorderFactory.createLineBorder(Color.black)));
-
-            setContentPane(cp);
-
-            add(scene, BorderLayout.CENTER);
-
-            pause.addActionListener(new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                {
-                    try
-                    {
-                        Thread.sleep(pse);
-                    }
-
-=======
-            }
-=======
-            tmp = text.getText();
-
-            array = tmp.split(" ");
->>>>>>> origin/master
-
-            label.setVisible(false);
-            button1.setVisible(false);
-            button2.setVisible(false);
-            text.setVisible(false);
-            nexter.setVisible(false);
-
-            speed.setSize(120 * scale, 25 * scale);
-<<<<<<< HEAD
-            speed.setLocation(120 * scale, 70 * scale);
-
-            ps.setSize(120 * scale, 25 * scale);
-            ps.setLocation(120 * scale, 100 * scale);
-
-            next.setSize(30 * scale, 15 * scale);
-            next.setLocation(165 * scale, 130 * scale);
-            next.addActionListener(new Action());
-
-            add(speed);
-            add(ps);
-=======
-            speed.setLocation(120 * scale,70 * scale);
-
-            next.setSize(30 * scale, 15 * scale);
-            next.setLocation(165 * scale, 100 * scale);
-            next.addActionListener(new Action());
-
-            add(speed);
->>>>>>> origin/master
-            add(next);
-        }
-    }
-
-    class Action3 implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-<<<<<<< HEAD
-            Visual scene = new Visual(array, spd);
-
-            JPanel cp = new JPanel(new BorderLayout());
-
-            cp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),
-                    BorderFactory.createLineBorder(Color.black)));
-
-            setContentPane(cp);
-
-            add(scene, BorderLayout.CENTER);
-
-            pause.addActionListener(new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                {
-                    try
-                    {
-                        Thread.sleep(pse);
-                    }
-
-                    catch (InterruptedException err)
-                    {
-                        err.printStackTrace();
-                    }
-                }
-            });
-
-            cp.add(pause, BorderLayout.SOUTH);
-
-            setSize(250 * scale, 200 * scale);
-            setLocationRelativeTo(null);
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setVisible(true);
-=======
-
->>>>>>> origin/master
-        }
-    }
-
+    /** Поведение кнопки визуализации размеров */
     class Action4 implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
-<<<<<<< HEAD
-            Visualisation scene = new Visualisation(array, spd);
-
-            JPanel cp = new JPanel(new BorderLayout());
-
-            cp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),
-                    BorderFactory.createLineBorder(Color.black)));
-
-            setContentPane(cp);
-
-            add(scene, BorderLayout.CENTER);
-
-            pause.addActionListener(new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                {
-                    try
-                    {
-                        Thread.sleep(pse);
-                    }
-
->>>>>>> origin/master
-                    catch (InterruptedException err)
-                    {
-                        err.printStackTrace();
-                    }
-                }
-            });
-
-            cp.add(pause, BorderLayout.SOUTH);
-<<<<<<< HEAD
-=======
-            cp.setBackground(Color.white);
->>>>>>> origin/master
-
-            setSize(250 * scale, 200 * scale);
-            setLocationRelativeTo(null);
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setVisible(true);
-<<<<<<< HEAD
-        }
-    }
-
-    class Action4 implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e)
-        {
+            /** Создание объекта визуализации */
             scene = new Visualisation(array);
 
+            /** Создание панели, добавление границ */
             JPanel cp = new JPanel(new BorderLayout());
 
             cp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 40, 5),
                     BorderFactory.createLineBorder(Color.black)));
 
+            /** Представление панели как контейнера */
             setContentPane(cp);
 
-            //scene.timerStart();
-
+            /** Поведение кнопки следующего шага, здесь после каждого нажатия отрисовывается следующий шаг сортировки */
             scene.setCont();
 
             pause.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent e)
                 {
-                    scene = new Visualisation(hs.get(con).stp);
+                    if(con <= hs.size())
+                    {
 
-                    con++;
+                        scene = new Visualisation(hs.get(con).stp);
 
-                    add(scene, BorderLayout.CENTER);
+                        con++;
 
-                    scene.setCont();
+                        add(scene, BorderLayout.CENTER);
 
-                    scene.revalidate();
+                        scene.setCont();
 
-                    scene.repaint();
+                        scene.revalidate();
 
-                    outp.setText("Закончено построение дерева, началась фаза 2");
+                        scene.repaint();
+
+                        outp.setText("Закончено построение дерева, началась фаза 2");
+                    }
                 }
             });
 
+            /** Задание размеров и положения элементов, а так же добавление их на панель */
             outp.setSize(200 * scale, 20);
             outp.setLocation(100, 210 * scale);
 
@@ -577,13 +300,11 @@ public class GUI extends JFrame
 
             setSize(250 * scale, 241 * scale);
             setLocationRelativeTo(null);
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setVisible(true);
-=======
-=======
 
->>>>>>> origin/master
->>>>>>> origin/master
+            //При закрытии окна завершить приложение
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            //Сделать видимым данную панель
+            setVisible(true);
         }
     }
 }
