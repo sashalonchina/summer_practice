@@ -1,5 +1,8 @@
 package sample.summer_practice;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Класс для сортировки массива целых чисел с помощью кучи.
  * Для сортировки вызывается статический метод sort(int[] a)
@@ -7,7 +10,21 @@ package sample.summer_practice;
 class HeapSort
 {
     /** Размер кучи. Изначально равен размеру сортируемого массива */
-    private static int heapSize;
+    public int heapSize;
+    public int[] stp;
+    private static boolean init = false;
+
+    public HeapSort(int[] arr)
+    {
+        stp = arr.clone();
+
+        if (!init) buildHeap(stp);
+    }
+
+    public HeapSort(HeapSort old) {
+        stp = old.stp.clone();
+        heapSize = old.heapSize;
+    }
 
     /**
      * Сортировка с помощью кучи
@@ -22,18 +39,13 @@ class HeapSort
      *
      * a - сортируемый массив
      */
-    public static void sort(String[] a, String type)
+    public void sort()
     {
-        buildHeap(a, type);
+        swap(stp, 0, heapSize - 1);
 
-        while (heapSize > 1)
-        {
-            swap(a, 0, heapSize - 1);
+        heapSize--;
 
-            heapSize--;
-
-            heapify(a, 0, type);
-        }
+        heapify(stp, 0);
     }
 
     /**
@@ -43,11 +55,13 @@ class HeapSort
      *
      *  a - массив, из которого формируется куча
      */
-    private static void buildHeap(String[] a, String type)
+    private void buildHeap(int[] a)
     {
         heapSize = a.length;
 
-        for (int i = a.length / 2; i >= 0; i--) heapify(a, i, type);
+        init = true;
+
+        for (int i = a.length / 2; i >= 0; i--) heapify(a, i);
     }
 
     /**
@@ -57,29 +71,18 @@ class HeapSort
      * a - массив, из которого сформирована куча
      * i - корень поддерева, для которого происходит переупорядосивание
      */
-    private static void heapify(String[] a, int i, String type)
+    private void heapify(int[] a, int i)
     {
         int l = left(i), r = right(i), largest = i;
 
-        if (type == "up")
-        {
-            if (l < heapSize && (a[i]).compareTo(a[l]) < 0) largest = l;
-
-            if (r < heapSize && (a[largest]).compareTo(a[r]) < 0) largest = r;
-        }
-
-        else if (type == "down")
-        {
-            if (l < heapSize && (a[i]).compareTo(a[l]) > 0) largest = l;
-
-            if (r < heapSize && (a[largest]).compareTo(a[r]) > 0) largest = r;
-        }
+        if ((l < heapSize) && (a[i] < a[l])) largest = l;
+        if ((r < heapSize) && (a[largest] < a[r])) largest = r;
 
         if (i != largest)
         {
             swap(a, i, largest);
 
-            heapify(a, largest, type);
+            heapify(a, largest);
         }
     }
 
@@ -89,7 +92,7 @@ class HeapSort
      * i - индекс текущего узла кучи
      * return - индекс правого потомка
      */
-    private static int right(int i) {
+    private int right(int i) {
         return 2 * i + 1;
     }
 
@@ -99,7 +102,7 @@ class HeapSort
      * i - индекс текущего узла кучи
      * return - индекс левого потомка
      */
-    private static int left(int i) {
+    private int left(int i) {
         return 2 * i + 2;
     }
 
@@ -110,9 +113,9 @@ class HeapSort
      * i - индекс первого элемента
      * j - индекс второго элемента
      */
-    private static void swap(String[] a, int i, int j)
+    private void swap(int[] a, int i, int j)
     {
-        String temp = a[i];
+        int temp = a[i];
 
         a[i] = a[j];
         a[j] = temp;
