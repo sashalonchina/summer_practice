@@ -39,13 +39,28 @@ class HeapSort
      *
      * a - сортируемый массив
      */
+<<<<<<< HEAD
     public void sort()
     {
         swap(stp, 0, heapSize - 1);
+=======
+    public static void sort(int[] a)
+    {
+        buildHeap(a);
+
+        while (heapSize > 1)
+        {
+            swap(a, 0, heapSize - 1);
+>>>>>>> origin/master
 
         heapSize--;
 
+<<<<<<< HEAD
         heapify(stp, 0);
+=======
+            heapify(a, 0);
+        }
+>>>>>>> origin/master
     }
 
     /**
@@ -55,12 +70,19 @@ class HeapSort
      *
      *  a - массив, из которого формируется куча
      */
+<<<<<<< HEAD
     private void buildHeap(int[] a)
     {
         heapSize = a.length;
 
         init = true;
 
+=======
+    private static void buildHeap(int[] a)
+    {
+        heapSize = a.length;
+
+>>>>>>> origin/master
         for (int i = a.length / 2; i >= 0; i--) heapify(a, i);
     }
 
@@ -71,7 +93,11 @@ class HeapSort
      * a - массив, из которого сформирована куча
      * i - корень поддерева, для которого происходит переупорядосивание
      */
+<<<<<<< HEAD
     private void heapify(int[] a, int i)
+=======
+    private static void heapify(int[] a, int i)
+>>>>>>> origin/master
     {
         int l = left(i), r = right(i), largest = i;
 
@@ -113,7 +139,11 @@ class HeapSort
      * i - индекс первого элемента
      * j - индекс второго элемента
      */
+<<<<<<< HEAD
     private void swap(int[] a, int i, int j)
+=======
+    private static void swap(int[] a, int i, int j)
+>>>>>>> origin/master
     {
         int temp = a[i];
 
